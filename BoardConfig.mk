@@ -134,3 +134,4 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/i9100g/releasetool
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/i9100g/BoardConfigVendor.mk
 
+TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/i9100g/releasetools
