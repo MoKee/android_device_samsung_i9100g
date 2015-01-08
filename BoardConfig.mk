@@ -38,6 +38,8 @@ BOARD_CUSTOM_BOOTIMG_MK := device/samsung/i9100g/shbootimg.mk
 TARGET_KERNEL_SOURCE := kernel/samsung/t1
 TARGET_KERNEL_CONFIG := mokee_i9100g_defconfig
 
+TARGET_SPECIFIC_HEADER_PATH += device/samsung/i9100g/include
+
 # Init
 TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
@@ -59,7 +61,6 @@ USE_OPENGL_RENDERER := true
 # Camera
 BOARD_CAMERA_HAVE_ISO := true
 COMMON_GLOBAL_CFLAGS += -DHAVE_ISO
-COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 
 # Vold
@@ -86,6 +87,7 @@ WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_sta.b
 WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
 BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_NO_APSME_ATTR              := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
