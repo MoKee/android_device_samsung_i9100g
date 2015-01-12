@@ -31,10 +31,13 @@ class EdifyGenerator(edify_generator.EdifyGenerator):
 
       args = {'partition': partition, 'image': image}
 
+      self.UnpackPackageFile("flash_image", "/tmp/flash_image")
+      self.script.append('set_metadata("/tmp/flash_image", "uid", 0, "gid", 0, "mode", 0755);')
       self.script.append(
             ('assert(package_extract_file("%(image)s", "/tmp/%(image)s"),\n'
-             '       write_raw_image("/tmp/%(image)s", "%(partition)s"),\n'
+             '       run_program("/tmp/flash_image", "%(partition)s", "/tmp/%(image)s"),\n'
              '       delete("/tmp/%(image)s"));') % args)
+      self.script.append('delete("/tmp/flash_image");')
 
     def Unmount(self, mount_point):
       """Unmount the partition with the given mount_point."""
