@@ -65,6 +65,12 @@ def WriteFullOTAPackage(input_zip, output_zip):
   system_items = ItemSet("system", "META/filesystem_config.txt")
   AppendAssertions(script, device_specific.info_dict)
   device_specific.FullOTA_Assertions()
+
+  CopyInstallTools(output_zip)
+  script.UnpackPackageDir("install", "/tmp/install")
+  script.SetPermissionsRecursive("/tmp/install", 0, 0, 0755, 0644, None, None)
+  script.SetPermissionsRecursive("/tmp/install/bin", 0, 0, 0755, 0755, None, None)
+
   if OPTIONS.backuptool:
     script.Mount("/system")
     script.RunBackup("backup")
