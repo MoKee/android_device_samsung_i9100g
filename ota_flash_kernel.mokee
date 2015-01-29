@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Copyright (C) 2015 The MoKee OpenSource Project
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+
+if [ -f z2/flash_image ];then
+	cp -R z2/flash_image out/flash_image
+	rm z2/flash_image
+fi
+if [ -f z1/flash_image ];then
+	rm z1/flash_image
+fi
+
+echo "package_extract_file(\"flash_image\", \"/tmp/flash_image\");" >> updater-script
+echo "set_metadata(\"/tmp/flash_image\", \"uid\", 0, \"gid\", 0, \"mode\", 0755);" >> updater-script
+echo "assert(package_extract_file(\"boot.img\", \"/tmp/boot.img\")," >> updater-script
+echo "       run_program(\"/tmp/flash_image\", \"/dev/block/mmcblk0p5\", \"/tmp/boot.img\")," >> updater-script
+echo "       delete(\"/tmp/boot.img\"));" >> updater-script
+echo "delete(\"/tmp/flash_image\");" >> updater-script
+
