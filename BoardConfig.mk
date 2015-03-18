@@ -52,7 +52,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Hardware tunables
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
+BOARD_HARDWARE_CLASS := hardware/samsung/mkhw
 
 # Egl
 BOARD_EGL_CFG := device/samsung/i9100g/configs/egl.cfg
