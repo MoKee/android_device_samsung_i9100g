@@ -47,12 +47,16 @@ on fs
     restorecon /efs/.nv_data.bak
     restorecon /efs/.nv_data.bak.md5
     restorecon /efs/.nv_state
-    restorecon /efs/bluetooth/bt_addr
+    restorecon /efs/bluetooth
+    restorecon /efs/calibration_data
     restorecon /efs/FactoryApp/factorymode
     restorecon /efs/FactoryApp/hw_ver
     restorecon /efs/FactoryApp/keystr
     restorecon /efs/FactoryApp/serial_no
+    restorecon /efs/imei
+    restorecon /efs/imei/keystr
     restorecon /efs/imei/mps_code.dat
+    restorecon /efs/upgaddr
     restorecon /efs/wifi/.mac.info
 
 # pvr module
@@ -217,6 +221,7 @@ on boot
     chown radio system /sys/class/sec/sec_touchscreen/tsp_firm_update_status
     chown radio system /sys/class/sec/sec_touchscreen/tsp_firm_update
     chown radio system /sys/class/sec/sec_touchscreen/tsp_threshold
+    restorecon /sys/class/sec/sec_touchscreen/tsp_threshold
 
 # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
@@ -241,6 +246,7 @@ on boot
 
     chown system system /sys/class/timed_output/vibrator/pwm_value
     chmod 0660 /sys/class/timed_output/vibrator/pwm_value
+    restorecon /sys/class/timed_output/vibrator/pwm_value
     chown system system /sys/class/timed_output/vibrator/pwm_max
     chmod 0660 /sys/class/timed_output/vibrator/pwm_max
     chown system system /sys/class/timed_output/vibrator/pwm_min
@@ -253,8 +259,10 @@ on boot
 # Change permission for LCD
     chown system radio /sys/class/lcd/panel/lcd_type
     chown system media_rw /sys/class/lcd/panel/gamma_mode
+    restorecon /sys/class/lcd/panel/gamma_mode
     chown system radio /sys/class/lcd/panel/lcd_power
     chown system system /sys/class/lcd/panel/power_reduce
+    restorecon /sys/class/lcd/panel/power_reduce
 
 #UART
 # Permissions for uart_sel and usb_sel
@@ -332,6 +340,7 @@ on boot
     chown system input /sys/class/input/input1/poll_delay
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
+    restorecon /sys/class/sensors/accelerometer_sensor/calibration
 
 # for magsensor
     chown system system /dev/ak8975
@@ -486,6 +495,7 @@ service TvoutService_C /system/bin/bintvoutservice
     class main
     user system
     group system
+    seclabel u:r:tvout:s0
 
 # LPM
 on property:ro.bootmode=charger
