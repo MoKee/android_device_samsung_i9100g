@@ -36,7 +36,7 @@ BOARD_CUSTOM_BOOTIMG_MK := device/samsung/i9100g/shbootimg.mk
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/samsung/t1
-TARGET_KERNEL_CONFIG := cyanogenmod_i9100g_defconfig
+TARGET_KERNEL_CONFIG := mokee_i9100g_defconfig
 
 TARGET_SPECIFIC_HEADER_PATH += device/samsung/i9100g/include
 
@@ -52,7 +52,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2147483648
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Hardware tunables
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
+BOARD_HARDWARE_CLASS := hardware/samsung/mkhw
 
 # Egl
 BOARD_EGL_CFG := device/samsung/i9100g/configs/egl.cfg
